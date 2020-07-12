@@ -1,0 +1,201 @@
+Rogers Park 
+Dunning
+
+
+
+function chicago(id){
+  d3.json(url, function(response) {
+    console.log(response);
+  // Loop through data
+  for (var i = 0; i < response.length; i++) {
+      // Set the data location property to a variable
+      var ch_community_area_name = response[i].community_area_name;
+      var ch_housing_crowded = response[i].percent_of_housing_crowded;
+      var ch_unemp = response[i].percent_aged_16_unemployed;
+      var ch_diploma = response[i].percent_aged_25_without_high_school_diploma;
+      var ch_aged = response[i].percent_aged_under_18_or_over_64;
+      var ch_income = response[i].per_capita_income_;
+      var ch_hardship_index = response[i].hardship_index;
+  }})};
+  
+  chicago(url);
+
+
+
+
+
+      // Loop through data
+    for (var i = 0; i < response.length; i++) {
+        // Set the data location property to a variable
+        var ch_community_area_name = response[i].community_area_name;
+        console.log(ch_community_area_name);
+        var ch_housing_crowded = response[i].percent_of_housing_crowded;
+        console.log(ch_housing_crowded);
+    }})};
+
+
+  function getInfo(id){
+    url = "https://data.cityofchicago.org/resource/kn9c-c2s2.json";
+    d3.json(url, function(response) {
+      console.log(response);
+      var fresponse = response.filter(results => results.community_area_name === id)[0];
+      console.log(fresponse);
+      var demographicInfo = d3.select("#sample-metadata");
+      demographicInfo.html("");
+      Object.entries(fresponse).forEach((key) => {   
+          demographicInfo.append("h5").text(key[0].toUpperCase() + ": " + key[1]);    
+  });
+});
+}
+
+
+
+d3.json(url, function(response) {
+    console.log(response);
+    var neighborhood = response.community_area_name ;
+    console.log(neighborhood);
+    });
+
+    function chicago(id){
+        d3.json(url, function(response) {
+        // Loop through data
+        for (var i = 0; i < response.length; i++) {
+            // Set the data location property to a variable
+            var deaths = response[i].community_area_name;
+            console.log(deaths);
+        }})};
+        
+        chicago(url);
+
+
+    function init() {
+        var dropdown = d3.select("#selDataset");
+        d3.json(url, function(response) {
+            var neighborhood_name = response.community_area_name;
+            console.log(neighborhood_name);
+            neighborhood_name.forEach(function(name) {
+                dropdown.append("option").text(name).property("value");
+            });
+            getPlot(response.community_area_name[0]);
+        });
+    }
+
+
+
+for (var i = 0; i < response.length; i++) {
+        // Set the data location property to a variable
+        var neighborhood_name = response[i].community_area_name;
+
+
+
+
+d3.json(url, function(response) {
+    console.log(response);
+    var neighborhood = response.community_area_name ;
+    console.log(neighborhood);
+    });
+
+
+function chicago(id){
+    d3.json(url, function(response) {
+    // Loop through data
+    for (var i = 0; i < response.length; i++) {
+        // Set the data location property to a variable
+        var deaths = response[i].community_area_name;
+        console.log(deaths);
+    }})};
+    
+    chicago(url);
+
+        
+
+
+function getPlot(id) {
+    d3.json(url, function(response)  {
+        var neighborhood = response.community_area_name;
+        var cause_death = response.cause_of_death;
+        var num_deaths = response.cumulative_deaths_2004_2008;
+        var cu_death_rank = response.cumulative_deaths_rank;
+        var avg_annual_deaths = response.average_annual_deaths_2004_2008;
+        var adj_rate_rank = response.adjusted_rate_rank;
+        var avg_ann_yrs_pot_life_lost = response.average_annual_years_of_potential_life_lost_rate_2004_2008;
+        var ypll_rate_rank = response.ypll_rate_rank;
+
+        //bar chart
+        var trace = {
+            x: cause_death,
+            y: num_deaths,
+            //text: labels,
+            type:"bar",
+            orientation: "h",
+        };
+        var data = [trace];
+        Plotly.newPlot("bar", data);
+    });
+}  
+
+
+function optionChanged(id) {
+getPlot(id);
+}     
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+
+
+// Chicago Data Portal--underlying causes of death
+var url = "http://127.0.0.1:5000/API/Chi_Death_Data";
+var neighborhoods = [];
+
+
+
+function getPlot(id) {
+    d3.json(url, function(response)  {
+        var neighborhood = response.community_area_name;
+        var cause_death = response.cause_of_death;
+        var num_deaths = response.cumulative_deaths_2004_2008;
+        var cu_death_rank = response.cumulative_deaths_rank;
+        var avg_annual_deaths = response.average_annual_deaths_2004_2008;
+        var adj_rate_rank = response.adjusted_rate_rank;
+        var avg_ann_yrs_pot_life_lost = response.average_annual_years_of_potential_life_lost_rate_2004_2008;
+        var ypll_rate_rank = response.ypll_rate_rank;
+
+        //bar chart
+        var trace = {
+            x: cause_death,
+            y: num_deaths,
+            //text: labels,
+            type:"bar",
+            orientation: "h",
+        };
+        var data = [trace];
+        Plotly.newPlot("bar", data);
+    });
+}  
+
+
+function optionChanged(id) {
+getPlot(id);
+}     
+
+
+function init() {
+    var dropdown = d3.select("#selDataset");
+    d3.json(url, function(response) {
+        console.log(response);
+        for (var i = 0; i < response.length; i++) {
+          var  cname = response[i].community_area_name;
+            dropdown.append("option").text(cname);
+                getPlot(cname);
+           // Loop through data
+        }})};
+   
+init();
+
+
+
+
+var cu_deaths = personGroupedByColor.map(results => results.CumulativeDeaths20062010);
+        console.log(cu_deaths);
